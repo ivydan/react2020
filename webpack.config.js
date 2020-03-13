@@ -60,6 +60,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'template.html',
+            chunksSortMode: "none",
             minify: {
                 removeComments: true,
                 collapseWhitespace: true
@@ -106,11 +107,7 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [{
                     loader: 'babel-loader',
-                    options: {//如果有这个设置则不用再添加.babelrc文件进行配置
-                        // "babelrc": false,// 不采用.babelrc的配置
-                        "plugins": [
-                            "dynamic-import-webpack"
-                        ],
+                    options: {
                         presets: ["es2015", "react", "stage-0"],
                     },
                 }]
