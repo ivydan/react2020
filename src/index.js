@@ -4,7 +4,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from './home';
 import AsyncComponent from "./asyncComponent";
-
+import RoutePage from "./routePage";
 
 
 const PrimaryLayout = () => (
@@ -13,8 +13,8 @@ const PrimaryLayout = () => (
             {/* 主页面 */}
             <Route path="/" exact component={Home} />
             {/* 功能页面 */}
-            <Route path="/abc" component={AsyncComponent(() => import(/* webpackChunkName: "abc" */ "./abc/index.bundle.js"))} />
-            <Route path="/about" component={AsyncComponent(() => import(/* webpackChunkName: "about" */ "./about/index.bundle.js"))} />
+            <Route path="/abc" component={AsyncComponent(() => import(/* webpackChunkName: "abc" */ "./abc/abc.bundle.js"))} />
+            <Route path="/about" component={AsyncComponent(() => import(/* webpackChunkName: "about" */ "./about/about.bundle.js"))} />
         </Switch>
     </div>
 )
