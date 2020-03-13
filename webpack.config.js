@@ -10,7 +10,7 @@ module.exports = {
     },
     output: {
         filename: '[name].bundle.js',
-        // chunkFilename: '[name].bundle.js',  //懒加载使用。  chunks插件会无效
+        chunkFilename: '[name].dynamic.js',  //懒加载使用
         path: path.resolve(__dirname, 'dist')
     },
     resolve: {
@@ -18,8 +18,39 @@ module.exports = {
             Utils: path.resolve(__dirname, 'utils'),
             Components: path.resolve(__dirname, 'components'),
         },
-        extensions: [".ts", ".tsx",".js", ".jsx", ".json"]
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
     },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                // Split vendor code to its own chunk(s)
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/i,
+                    chunks: "all"
+                }
+            }
+        },
+        // The runtime should be in its own chunk
+        runtimeChunk: {
+            name: "runtime"
+        }
+    },
+    // optimization: {
+    //     splitChunks: {
+    //         cacheGroups: {
+    //             commons: {
+    //                 name: "commons",
+    //                 chunks: "initial",
+    //                 minChunks: 2
+    //             }
+    //         }
+    //     }
+    // },
+    // optimization: {
+    //     splitChunks: {
+    //         name: "vendors"
+    //     }
+    // },
     // externals: {
     //     'react': 'React',
     //     'react-dom': 'ReactDOM',
@@ -30,10 +61,10 @@ module.exports = {
             filename: 'index.html',
             template: 'template.html',
             minify: {
-              removeComments: true,
-              collapseWhitespace: true
+                removeComments: true,
+                collapseWhitespace: true
             }
-          }),
+        }),
         new ExtractTextPlugin({
             filename: 'build.min.css',
             allChunks: true,
@@ -48,7 +79,7 @@ module.exports = {
         //             priority: -20,
         //             reuseExistingChunk: true,
         //         },
-        //         //打包重复出现的代码 lodash被打包进来
+        //         //打包重复出现的代码
         //         vendor: {
         //             chunks: 'initial',
         //             minChunks: 2,
@@ -57,41 +88,31 @@ module.exports = {
         //             name: 'vendor'
         //         },
         //         //打包第三方类库
-        //         commons: {  // 不知道如何将lodash打包进来
-        //             name: "commons",
-        //             chunks: "initial",
-        //             minChunks: Infinity
-        //         }
+        // 		commons: {
+        // 			name: "commons",
+        // 			chunks: "initial",
+        // 			minChunks: Infinity
+        // 		}
         //     }
         // }),
         // new webpack.HashedModuleIdsPlugin(),
         // new webpack.NamedModulesPlugin(),
         // new webpack.HotModuleReplacementPlugin() //以便更容易查看要修补(patch)的依赖。
     ],
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                commons: {
-                    name: "commons",
-                    chunks: "initial",
-                    minChunks: 2
-                }
-            }
-        }
-    },
     module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
                 use: [{
                     loader: 'babel-loader',
                     options: {//如果有这个设置则不用再添加.babelrc文件进行配置
-                        "babelrc": false,// 不采用.babelrc的配置
+                        // "babelrc": false,// 不采用.babelrc的配置
                         "plugins": [
                             "dynamic-import-webpack"
                         ],
-                        presets: ["es2015", "react"]
-                    }
+                        presets: ["es2015", "react", "stage-0"],
+                    },
                 }]
             },
             {
