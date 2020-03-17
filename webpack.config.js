@@ -10,7 +10,7 @@ module.exports = {
     },
     output: {
         filename: '[name].bundle.js',
-        chunkFilename: '[name].js',  //懒加载使用
+        chunkFilename: '[id]-[chunkhash:8].js',  //懒加载使用
         path: path.resolve(__dirname, 'dist')
     },
     resolve: {

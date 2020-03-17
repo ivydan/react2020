@@ -5,21 +5,17 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from './home';
 import AsyncComponent from "./asyncComponent";
 
-const RouteContext = require.context('./', true, /\.bundle\/index\.(js|jsx)$/, 'lazy');
+const RouteContext = require.context('./', true, /index\.bundle\.(js|jsx)$/, 'lazy');
 //遍历有效组件路径值
 const RouteKeys = RouteContext.keys();
 
 const RoutePage = RouteKeys.map((item) => {
     let arr = item.split('/');
-    arr.pop()
-    arr.shift()
-    let routePath = arr.join('/')
-    let routeName = arr[arr.length - 1];
-    console.log(item, arr, routePath, routeName);
+    let routeName = arr[arr.length - 2];
     return <Route
         key={`ROUTE${routeName}`}
         path={`/${routeName}`}
-        component={AsyncComponent(() => import(/*webpackChunkName: "[request]" */ `./${routePath}`))} />;
+        component={AsyncComponent(() => import(`${item}`))} />;
 });
 
 const PrimaryLayout = () => (
@@ -30,7 +26,10 @@ const PrimaryLayout = () => (
 
             </li>
             <li>
-                <Link to="/about">about</Link>
+                <Link to="/index">index</Link>
+            </li>
+            <li>
+                <Link to="/log">log</Link>
             </li>
         </ul>
         <Switch>
