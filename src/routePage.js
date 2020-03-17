@@ -23,7 +23,7 @@ const RoutePage = RouteKeys.map((item, i) => {
     let nameArr = item.split('/');
     let name = nameArr[nameArr.length-1];
     let path = name.split('.')[0];
-    return <Route key={`ROUTE${i}`} path={`/${path}`} component={AsyncComponent(() => import(`../src/abc/abc.bundle.js`))}/>;
+    return <Route key={`ROUTE${i}`} path={`/${path}`} component={AsyncComponent(() => import(`./abc/index.bundle.js/index.js`))}/>;
 });
 
 console.log(RoutePage);

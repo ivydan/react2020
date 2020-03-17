@@ -10,7 +10,7 @@ module.exports = {
     },
     output: {
         filename: '[name].bundle.js',
-        chunkFilename: '[name].dynamic.js',  //懒加载使用
+        chunkFilename: '[name].js',  //懒加载使用
         path: path.resolve(__dirname, 'dist')
     },
     resolve: {
@@ -21,6 +21,7 @@ module.exports = {
         extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
     },
     optimization: {
+        runtimeChunk:true,
         splitChunks: {
             cacheGroups: {
                 // Split vendor code to its own chunk(s)
