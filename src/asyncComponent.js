@@ -12,7 +12,9 @@ const AsyncComponent = loadComponent => (
       }
 
       loadComponent()
-        .then(module => module.default)
+        .then(module => {
+          return module.default
+        })
         .then((Component) => {
           this.setState({Component});
         })

@@ -1,5 +1,7 @@
 import React from 'react';
-import asyncComponent from './asyncComponent';
+import AsyncComponent from './asyncComponent';
+import { Route, Link } from "react-router-dom";
+const path = require('path');
 
 //按需加载包装器
 const lazyLoadComponent = (comp) => (props) => (
@@ -8,21 +10,22 @@ const lazyLoadComponent = (comp) => (props) => (
     </asyncComponent>
 )
 
+
+
 //匹配组件入口
-const RouteContext = require.context('./', true, /\index.bundle\.(js|jsx)$/);
+const RouteContext = require.context('./', true, /\.bundle\.(js|jsx)$/);
 //遍历有效组件路径值
 const RouteKeys = RouteContext.keys();
 console.log(RouteKeys);
 
 //动态初始化路由界面。根据bundle.js/jsx 匹配
-const RoutePage = RouteKeys.map(item => {
+const RoutePage = RouteKeys.map((item, i) => {
     let nameArr = item.split('/');
     let name = nameArr[nameArr.length-1];
     let path = name.split('.')[0];
-    return {
-        path: path,
-        component: lazyLoadComponent(RouteContext(item))
-    };
+    return <Route key={`ROUTE${i}`} path={`/${path}`} component={AsyncComponent(() => import(`../src/abc/abc.bundle.js`))}/>;
 });
+
+console.log(RoutePage);
 
 export default RoutePage;
