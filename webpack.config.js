@@ -17,11 +17,13 @@ module.exports = {
         alias: {
             Utils: path.resolve(__dirname, 'utils'),
             Components: path.resolve(__dirname, 'components'),
+            Core: path.resolve(__dirname, 'core'),
+            '@': path.resolve(__dirname, 'src')
         },
         extensions: [".ts", ".tsx", ".js", ".jsx", ".json"]
     },
     optimization: {
-        runtimeChunk:true,
+        runtimeChunk: true,
         splitChunks: {
             cacheGroups: {
                 // Split vendor code to its own chunk(s)

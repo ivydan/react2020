@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Link, withRouter } from "react-router-dom";
 
-class Main extends Component {
+export default class Main extends Component {
     constructor(props) {
         super(props);
 
@@ -11,11 +10,8 @@ class Main extends Component {
         return <div>
             Hello React
             <div>
-                ABC
-                <Link to="/about">About</Link>
+                abc
             </div>
         </div>
     }
 }
-
-export default withRouter(Main);
