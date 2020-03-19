@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Switch } from "react-router-dom";
-import AsyncComponent from '../src/asyncComponent';
+import AsyncComponent from './asyncComponent';
 
 const getRoutePage = () => {
     //非功能页面

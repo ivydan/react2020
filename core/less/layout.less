@@ -1,0 +1,70 @@
+.layout-container{
+    display: flex;
+    min-width: 666px;
+    .sidebar{
+        flex: 0 0 256px;
+        max-width: 256px;
+        min-width: 256px;
+        width: 256px;
+        background-color: #001529;
+        box-shadow: 2px 0 6px rgba(0,21,41,.35);
+        min-height: 100%;
+        color: white;
+        .logo{
+            height: 50px;
+            line-height: 50px;
+            font-size: 26px;
+            padding-left: 30px;
+            font-family: monospace;
+        }
+        ul{
+            list-style-type: none;
+            padding: 0 10px;
+            margin: 0;
+            li{
+                line-height: 30px;
+                a{
+                    color: white;
+                    text-decoration: none;
+                    width: 100%;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+    .content{
+        flex: auto;
+        flex-direction: column;
+        position: relative;
+        .head{
+            height: 50px;
+            width: 100%;
+            text-align: right;
+            padding-right: 30px;
+            box-sizing: border-box;
+            line-height: 50px;
+            box-shadow: 0 1px 4px rgba(0,21,41,.08);
+        }
+        .section{
+            background: #f0f2f5;
+            position: absolute;
+            top: 50px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px;
+        }
+    }
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: "Yapi SC", "Wawati SC", "Hanzipen SC", "Hannotate SC", //OS
+                 "STLiti", "STXingkai", "Arial","Microsoft YaHei",'YouYuan', cursive, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 18px;
+}
+
+html, body, #root, .primary-layout, .layout-container{
+    height: 100%;
+    box-sizing: border-box;
+}
