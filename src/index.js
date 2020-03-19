@@ -2,9 +2,11 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from './home';
+import Home from './home/index.jsx';
 import Layout from '../components/Layout';
 import AsyncComponent from "./asyncComponent";
+import RouteConfig from "../core/routeConfig";
+
 
 const PrimaryLayout = () => (
     <div className="primary-layout">
@@ -13,7 +15,8 @@ const PrimaryLayout = () => (
                 {/* 主页面 */}
                 <Route path="/" exact component={Home} />
                 {/* 功能页面 */}
-                {getRoutePage()}
+                {/* {getRoutePage()} */}
+                {RouteConfig()}
             </Switch>
         </Layout>
     </div>

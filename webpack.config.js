@@ -10,7 +10,7 @@ module.exports = {
     },
     output: {
         filename: '[name].bundle.js',
-        chunkFilename: '[id]-[chunkhash:8].js',  //懒加载使用
+        chunkFilename: '[name]-[chunkhash:8].js',  //懒加载使用
         path: path.resolve(__dirname, 'dist')
     },
     resolve: {
@@ -120,12 +120,7 @@ module.exports = {
                 use: [
                     'style-loader',
                     'css-loader',
-                    {
-                        loader: 'less-loader',
-                        options: {
-                            noIeCompat: true
-                        }
-                    }
+                    'less-loader'
                 ]
             }, {
                 test: /\.(png|svg|jpg|gif)$/,
