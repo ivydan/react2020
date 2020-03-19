@@ -11,6 +11,9 @@ export default class Home extends Component {
             <header>
                 Our React Router 4 App
             </header>
+            <div>
+                {this.props.children}
+            </div>
         </div>
     }
 }

@@ -9,15 +9,19 @@ import RouteConfig from "../core/routeConfig";
 const PrimaryLayout = () => (
     <div className="primary-layout">
         <Layout>
-            <Switch>
+            <Route path="/" component={Home} onEnter={_onEnter} onChange={_onEnter}>
                 {/* 主页面 */}
-                <Route path="/" exact component={Home} />
+                {/* <Route path="/" exact component={Home} /> */}
                 {/* 功能页面 */}
                 {RouteConfig()}
-            </Switch>
+            </Route>
         </Layout>
     </div>
 )
+
+function _onEnter(nextState, replaceState, callback) {
+    debugger
+}
 
 const Index = () => (
     <Router>
