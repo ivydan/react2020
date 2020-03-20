@@ -1,10 +1,32 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import '../core/less/layout.less';
 
-export default class Layout extends Component {
+class Layout extends Component {
     constructor(props) {
         super(props);
+    }
+
+    getInitialState(){
+        return {
+            children: {},
+            cacheElement:{}
+        }
+    }
+
+    componentDidMount(){
+        this._cacheRouteHistory(this.props);
+    }
+    componentWillUpdate(nextProps){
+        this._cacheRouteHistory(nextProps)
+    }
+
+    _cacheRouteHistory(props){
+        console.log(props);
+        let { cacheElement } = this.state;
+        this.setState({
+            children: props.children
+        })
     }
 
     render() {
@@ -15,6 +37,7 @@ export default class Layout extends Component {
                     LOGO
                 </div>
                 <ul>
+                    <li><Link to="/">Home</Link></li>
                     <li><Link to="/about">About</Link></li>
                     <li><Link to="/abc">Abc</Link></li>
                     <li><Link to="/log">Log</Link></li>
@@ -33,3 +56,5 @@ export default class Layout extends Component {
         </div>
     }
 }
+
+export default withRouter(Layout);
