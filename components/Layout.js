@@ -57,7 +57,7 @@ class Layout extends Component {
     render() {
         let { children } = this.props;
         let { pageList } = this.state;
-        console.log(this.state, this.props);
+        // console.log(this.state, this.props);
         return <div className="layout-container">
             <div className="sidebar">
                 <div className="logo">

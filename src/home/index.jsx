@@ -15,6 +15,7 @@ export default class Home extends Component {
     }
 
     render() {
+        console.log(this.props);
         return <div>
             Hello React Home
             <header>
