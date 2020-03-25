@@ -9,12 +9,12 @@ import Layout from '../components/Layout';
 const Index = () => (
     <Router>
         <Layout>
-            <Switch>
+            {/* <Switch> */}
                 {/* 主页面 */}
                 <Route path="/" exact component={Home} />
                 {/* 功能页面 */}
                 {RouteConfig()}
-            </Switch>
+            {/* </Switch> */}
         </Layout>
     </Router>
 )

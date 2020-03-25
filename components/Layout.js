@@ -1,36 +1,63 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from "react-router-dom";
+import _ from 'lodash';
 import '../core/less/layout.less';
 
 class Layout extends Component {
     constructor(props) {
         super(props);
-    }
-
-    getInitialState(){
-        return {
-            children: {},
-            cacheElement:{}
+        this.state = {
+            pageList: [],
+            currentPage: ''
         }
     }
 
-    componentDidMount(){
-        this._cacheRouteHistory(this.props);
-    }
-    componentWillUpdate(nextProps){
-        this._cacheRouteHistory(nextProps)
+    componentWillMount() {
+        let { children, location } = this.props;
+        // this._cacheRouteHistory(location.pathname, children);
     }
 
-    _cacheRouteHistory(props){
-        console.log(props);
-        let { cacheElement } = this.state;
-        this.setState({
-            children: props.children
-        })
+    componentWillReceiveProps(nextProps) {
+        let { children, location } = nextProps;
+        // this._cacheRouteHistory(location.pathname, children);
+        this._chaheRoute(location);
+    }
+
+    _chaheRoute(location) {
+        let { pageList } = this.state;
+        pageList.push(location)
+        // this.setState({
+        //     pageList
+        // })
+    }
+
+    _cacheRouteHistory(pathname, page) {
+        // let newPageList = _.cloneDeep(this.state.pageList);
+        // if (!page)
+        //     return;
+        // if (this._isHaveNotPathName(newPageList, pathname)) {
+        //     newPageList.push(page);
+        //     this.setState({
+        //         pageList: newPageList,
+        //         currentPage: pathname
+        //     })
+        // }
+    }
+
+    _isHaveNotPathName(list, name) {
+        let isTrue = true;
+        list && list.map(item => {
+            if (item.props.location.pathname === name) {
+                isTrue = false;
+            }
+        });
+        return isTrue;
     }
 
     render() {
         let { children } = this.props;
+        let { pageList } = this.state;
+        console.log(this.state, this.props);
         return <div className="layout-container">
             <div className="sidebar">
                 <div className="logo">
@@ -50,7 +77,16 @@ class Layout extends Component {
                     login
                 </div>
                 <div className="section">
-                    {children}
+                    <div>
+                        {pageList.map(v => {
+                            return <span onClick={() => {
+                                this.props.history.replace(v)
+                            }}>{v.pathname}&nbsp;</span>
+                        })}
+                    </div>
+                    <div>
+                        {children}
+                    </div>
                 </div>
             </div>
         </div>

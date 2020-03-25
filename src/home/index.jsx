@@ -5,6 +5,15 @@ export default class Home extends Component {
 
     }
 
+    componentWillMount() {
+        let { children, location } = this.props;
+    }
+
+    componentWillReceiveProps(nextProps) {
+        let { children, location } = nextProps;
+        debugger
+    }
+
     render() {
         return <div>
             Hello React Home

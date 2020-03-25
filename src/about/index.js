@@ -13,6 +13,7 @@ class About extends Component {
 
             <div>
                 About Page
+                <input type="text"/>
             </div>
         </div>
     }

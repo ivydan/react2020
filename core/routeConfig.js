@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Switch } from "react-router-dom";
 import AsyncComponent from './asyncComponent';
 
-const getRoutePage = () => {
+const RouteConfig = () => {
     //非功能页面
     const NoNeed = ['./index.js']
     // 获取路径
@@ -21,13 +21,6 @@ const getRoutePage = () => {
             component={AsyncComponent(() => import(/*webpackChunkName: "[request]" */ `../src/${arr.join('/')}`))} />;
     });
     return routePage;
-};
-
-const RouteConfig = () => {
-    let routePage = getRoutePage();
-    return <Switch>
-        {routePage}
-    </Switch>
 };
 
 export default RouteConfig;
