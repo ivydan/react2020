@@ -7,57 +7,60 @@ class Layout extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            pageList: [],
-            currentPage: ''
+            cacheLocations: { '/': {} },
         }
     }
 
     componentWillMount() {
-        let { children, location } = this.props;
-        // this._cacheRouteHistory(location.pathname, children);
+        let { location } = this.props;
+        this._setCacheRouteHistory(location);
     }
 
     componentWillReceiveProps(nextProps) {
-        let { children, location } = nextProps;
-        // this._cacheRouteHistory(location.pathname, children);
-        this._chaheRoute(location);
+        let { location } = nextProps;
+        this._setCacheRouteHistory(location);
     }
 
-    _chaheRoute(location) {
-        let { pageList } = this.state;
-        pageList.push(location)
-        // this.setState({
-        //     pageList
-        // })
+    _setCacheRouteHistory(location) {
+        let { cacheLocations } = this.state;
+        cacheLocations[location.pathname] = location;
     }
 
-    _cacheRouteHistory(pathname, page) {
-        // let newPageList = _.cloneDeep(this.state.pageList);
-        // if (!page)
-        //     return;
-        // if (this._isHaveNotPathName(newPageList, pathname)) {
-        //     newPageList.push(page);
-        //     this.setState({
-        //         pageList: newPageList,
-        //         currentPage: pathname
-        //     })
-        // }
+    _renderTabsTitle() {
+        let { cacheLocations } = this.state;
+        let titles = Object.keys(cacheLocations);
+        return titles.map(item => {
+            if (item === '/')
+                return <span key={`titles-home`} className="tabs-home tabs-l">
+                    <Link to={item}>home</Link>
+                </span>
+            return <span key={`titles${item}`} className="tabs-name tabs-l">
+                <Link to={item}>
+                    {item.replace(/\//, "")}
+                </Link>
+                <span className="close" onClick={this._closeTabs.bind(this, item)}>×</span>
+            </span>
+        })
     }
 
-    _isHaveNotPathName(list, name) {
-        let isTrue = true;
-        list && list.map(item => {
-            if (item.props.location.pathname === name) {
-                isTrue = false;
-            }
-        });
-        return isTrue;
+    _closeTabs(pathname) {
+        let { cacheLocations } = this.state;
+        let { history, onCloseChange } = this.props;
+        let titles = Object.keys(cacheLocations);
+        let index = titles.indexOf(pathname);
+        // 配置关闭后的新序号
+        let newIndex = index < titles.length - 1 ? index + 1 : index - 1;
+        // 转到关闭后的新路由上
+        history.push(titles[newIndex]);
+        // 删除当前tab页
+        delete cacheLocations[pathname];
+        // 删除缓存
+        onCloseChange && onCloseChange(pathname);
+        this.setState({ cacheLocations });
     }
 
     render() {
         let { children } = this.props;
-        let { pageList } = this.state;
-        // console.log(this.state, this.props);
         return <div className="layout-container">
             <div className="sidebar">
                 <div className="logo">
@@ -76,16 +79,16 @@ class Layout extends Component {
                 <div className="head">
                     login
                 </div>
+                <div className="tabs-title">
+                    {this._renderTabsTitle()}
+                </div>
                 <div className="section">
-                    <div>
-                        {pageList.map(v => {
-                            return <span onClick={() => {
-                                this.props.history.replace(v)
-                            }}>{v.pathname}&nbsp;</span>
-                        })}
-                    </div>
-                    <div>
-                        {children}
+
+                    <div className="section-body">
+
+                        <div className="section-content">
+                            {children}
+                        </div>
                     </div>
                 </div>
             </div>
