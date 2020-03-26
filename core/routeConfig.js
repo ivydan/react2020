@@ -6,7 +6,7 @@ import AsyncComponent from './asyncComponent';
 import CacheRoute, { CacheSwitch } from 'react-router-cache-route';
 
 //非功能页面
-const NoNeed = ['./index.js']
+const NoNeed = [] // src下的路径 例如：['./index.js']
 // 获取路径
 const routeContext = require.context('../src/', true, /index\.js$/, 'lazy');
 // 遍历有效组件路径值
