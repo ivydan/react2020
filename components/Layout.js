@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from "react-router-dom";
 import _ from 'lodash';
+import 'antd/dist/antd.css';
 import '../core/less/layout.less';
 
 class Layout extends Component {
@@ -73,6 +74,7 @@ class Layout extends Component {
                     <li><Link to="/log">Log</Link></li>
                     <li><Link to="/age">Age</Link></li>
                     <li><Link to="/name">Name</Link></li>
+                    <li><Link to="/download">DownLoad</Link></li>
                 </ul>
             </div>
             <div className="content">

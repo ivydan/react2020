@@ -8,6 +8,11 @@ module.exports = {
     ],
   ],
   "plugins": [
-    "dynamic-import-webpack"
+    "dynamic-import-webpack",
+    ["import", {
+      "libraryName": "antd",
+      "libraryDirectory": "es",
+      "style": "css" // `style: true` 会加载 less 文件
+    }]
   ]
 };
