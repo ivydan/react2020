@@ -15,7 +15,10 @@ export default class Main extends Component {
         return <div>
             Hello React
             <div>
-                abc
+                Font Creator
+            </div>
+            <div>
+                <span className="fei-icon-circle">ABC</span>
             </div>
         </div>
     }
