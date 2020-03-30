@@ -103,7 +103,6 @@ export default class Download extends Component {
                     }
                 }}
             />
-
         </div>
     }
 }

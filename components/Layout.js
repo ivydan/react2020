@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, withRouter } from "react-router-dom";
 import _ from 'lodash';
 import 'antd/dist/antd.css';
-import '../core/less/layout.less';
+import '../core/less/index.less';
 
 class Layout extends Component {
     constructor(props) {
