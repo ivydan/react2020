@@ -116,7 +116,13 @@ module.exports = {
                 }]
             },
             {
-                test: /\.(css|less)$/,
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                ]
+            }, {
+                test: /\.less$/,
                 use: [
                     'style-loader',
                     'css-loader',
@@ -128,10 +134,11 @@ module.exports = {
                     'file-loader'
                 ]
             }, {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: [
-                    'file-loader'
-                ]
+                test: /\.(woff|woff2|eot|ttf|otf|svg)$/,
+                use: [{
+                    loader: 'file-loader',
+                    options: { name: 'fonts/[name].[hash:8].[ext]' }
+                }]
             }, {
                 test: /\.(csv|tsv)$/,
                 use: [

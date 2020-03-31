@@ -1,0 +1,5 @@
+2020/03/31 10:06:04 [notice] 11180#2960: signal process started
+2020/03/31 10:08:05 [notice] 4492#11952: signal process started
+2020/03/31 10:08:32 [error] 11680#3352: *1 CreateFile() "D:\2020\react2020\nginx/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost", referrer: "http://localhost/"
+2020/03/31 10:11:28 [error] 11680#3352: *6 CreateFile() "D:\2020\react2020\nginx/html/abc" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /abc HTTP/1.1", host: "localhost"
+2020/03/31 10:26:46 [notice] 11660#10268: signal process started
