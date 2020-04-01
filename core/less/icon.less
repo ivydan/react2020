@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'WebFont';
+    src: url('webfont.eot');
+    src: url('webfont.eot?#iefix') format('embedded-opentype'),
+         url('webfont.woff') format('woff'),
+         url('webfont.ttf') format('truetype'),
+         url('webfont.svg#webfont') format('svg');
+    font-weight: normal;
+    font-style: normal;
+} 
+
+.webfont{
+    position: relative;
+    margin: 10px;
+}
+
+.webfont-e001, .webfont-e002, .webfont-e003, .webfont-e004{
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    margin: 10px;
+}
+
+.webfont-icon{
+    font-family: WebFont;
+    font-size: 50px;
+    position: absolute;
+    color: brown;
+}
+
+.webfont-e001::before{
+    .webfont-icon;
+    content: '\E001';
+}
+
+.webfont-e002::before{
+    .webfont-icon;
+    content: '\E002';
+}
+
+.webfont-e003::before{
+    .webfont-icon;
+    content: '\E003';
+}
+
+.webfont-e004::before{
+    .webfont-icon;
+    content: '\E004';
+}
