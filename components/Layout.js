@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from "react-router-dom";
-import 'antd/dist/antd.css';
-import '../core/less/index.less';
 
 class Layout extends Component {
     constructor(props) {
