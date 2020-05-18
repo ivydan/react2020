@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Store from './store/index';
 
 export default class Age extends Component {
     constructor(props) {
@@ -8,11 +9,7 @@ export default class Age extends Component {
 
     render() {
         return <div>
-            Hello React
-
-            <div>
-                Age
-            </div>
+            <h1>Redux</h1>
         </div>
     }
 }
