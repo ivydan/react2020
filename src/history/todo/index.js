@@ -3,7 +3,7 @@ import TodoList from './component/todoList';
 import { connect } from 'react-redux';
 import { addTodo } from './store/action';
 
-class Log extends Component {
+class Todo extends Component {
     constructor(props) {
         super(props);
 
@@ -12,7 +12,7 @@ class Log extends Component {
     render() {
         console.log(this.props, this.state)
         return <div>
-            Hello React Log Page
+            Hello React TODO Page
 
             <TodoList todos={this.props.todos} />
             <a onClick={this.props.onAddClick}>ADD</a>
@@ -22,7 +22,7 @@ class Log extends Component {
 
 const mapStateToProps = state => {
     return {
-        todos: state.logReducer
+        todos: state.todosReducer
     }
 }
 
@@ -37,4 +37,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Log)
+)(Todo)

@@ -5,6 +5,16 @@ import Layout from '../components/Layout';
 import AsyncComponent from './asyncComponent';
 import CacheRoute, { CacheSwitch } from 'react-router-cache-route';
 
+import { createStore, compose } from 'redux'
+import { Provider } from 'react-redux'
+import reducersApp from './reducers'
+
+// 再次强调一下 Redux 应用只有一个单一的 store。当需要拆分数据处理逻辑时，你应该使用 reducer 组合 而不是创建多个 store。
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+let store = createStore(reducersApp,  /* preloadedState, */ composeEnhancers());
+
+console.log(store.getState())
+
 //非功能页面
 const NoNeed = [] // src下的路径 例如：['./index.js']
 // 获取路径
@@ -55,22 +65,24 @@ class RouteConfig extends Component {
 
     render() {
         return (
-            <Router>
-                <Layout onCloseChange={this._onCloseChange.bind(this)}>
-                    {/* <Switch> */}
-                    {/* 主页面 */}
-                    {/* <Route path="/" exact component={Home} /> */}
-                    {/* 功能页面 */}
-                    {/* {RouteConfig()} */}
-                    {/* </Switch> */}
-                    <CacheSwitch>
+            <Provider store={store}>
+                <Router>
+                    <Layout onCloseChange={this._onCloseChange.bind(this)}>
+                        {/* <Switch> */}
                         {/* 主页面 */}
-                        <CacheRoute path="/" exact component={Home} />
+                        {/* <Route path="/" exact component={Home} /> */}
                         {/* 功能页面 */}
-                        {this._renderCacheRoutes()}
-                    </CacheSwitch>
-                </Layout>
-            </Router>
+                        {/* {RouteConfig()} */}
+                        {/* </Switch> */}
+                        <CacheSwitch>
+                            {/* 主页面 */}
+                            <CacheRoute path="/" exact component={Home} />
+                            {/* 功能页面 */}
+                            {this._renderCacheRoutes()}
+                        </CacheSwitch>
+                    </Layout>
+                </Router>
+            </Provider>
         );
     }
 }

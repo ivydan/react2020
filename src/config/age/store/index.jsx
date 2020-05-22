@@ -75,3 +75,12 @@ store.dispatch(addTodo('Learn about actions'))
 
 // 停止监听 state 更新
 unsubscribe();
+
+
+// 严格的单向数据流是 Redux 架构的设计核心。
+
+// Redux 应用中数据的生命周期遵循下面 4 个步骤：
+// 1. 调用 store.dispatch(action)。
+// 2. Redux store 调用传入的 reducer 函数。
+// 3. 根 reducer 应该把多个子 reducer 输出合并成一个单一的 state 树。
+// 4. Redux store 保存了根 reducer 返回的完整 state 树。

@@ -72,6 +72,8 @@ class Layout extends Component {
                     <li><Link to="/age">Age</Link></li>
                     <li><Link to="/name">Name</Link></li>
                     <li><Link to="/download">DownLoad</Link></li>
+                    <li><Link to="/redux">Redux</Link></li>
+                    <li><Link to="/todo">Todo</Link></li>
                 </ul>
             </div>
             <div className="content">
